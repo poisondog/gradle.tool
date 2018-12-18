@@ -1,0 +1,67 @@
+apply plugin: "com.github.dcendents.android-maven"
+apply plugin: "com.jfrog.bintray"
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def bintrayUser = properties.getProperty('bintray.user')
+def bintrayKey = properties.getProperty('bintray.apikey')
+def bintrayRepositories = properties.getProperty('bintray.repositories')
+def bintrayLicense = properties.getProperty('bintray.license', 'Apache-2.0')
+def bintraySiteUrl = properties.getProperty('bintray.siteUrl')
+def bintrayGitUrl = properties.getProperty('bintray.gitUrl')
+def bintrayVersion = version
+def bintrayGroudID = group
+def bintrayArtifactID = properties.getProperty('bintray.artifactId')
+def bintrayDesc = properties.getProperty('bintray.desc')
+
+install {
+	repositories.mavenInstaller {
+		pom {
+			project {
+				name bintrayArtifactID
+				description bintrayDesc
+				url bintraySiteUrl
+
+				packaging 'aar'
+				groupId bintrayGroudID
+				artifactId bintrayArtifactID
+				version bintrayVersion
+
+				licenses {
+					license {
+						name 'The Apache Software License, Version 2.0'
+						url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+					}
+				}
+				developers {
+					developer {
+						id 'poisondog'
+						name 'Adam Huang'
+						email 'poisondog@gmail.com'
+					}
+				}
+				scm {
+					connection bintrayGitUrl
+					developerConnection bintrayGitUrl
+					url bintraySiteUrl
+				}
+			}
+		}
+	}
+}
+
+bintray {
+	user = bintrayUser
+	key = bintrayKey
+	configurations = ['archives']
+	pkg {
+		repo = bintrayRepositories
+		name = bintrayArtifactID
+		websiteUrl = bintraySiteUrl
+		vcsUrl = bintrayGitUrl
+		licenses = [bintrayLicense]
+		publish = true
+		publicDownloadNumbers = true
+	}
+}
+

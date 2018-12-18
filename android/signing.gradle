@@ -1,0 +1,24 @@
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def lstoreFile = properties.getProperty('storeFile')
+def lstorePassword = properties.getProperty('storePassword')
+def lkeyAlias = properties.getProperty('keyAlias')
+def lkeyPassword = properties.getProperty('keyPassword')
+
+android {
+	signingConfigs {
+		poisondog {
+			storeFile file(lstoreFile)
+			storePassword lstorePassword
+			keyAlias lkeyAlias
+			keyPassword lkeyPassword
+		}
+	}
+
+	buildTypes {
+		release {
+			signingConfig signingConfigs.poisondog
+		}
+	}
+
+}

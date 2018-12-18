@@ -1,0 +1,32 @@
+allprojects {
+	repositories {
+		jcenter()
+	}
+	apply plugin: 'maven'
+	apply plugin: 'maven-publish'
+}
+
+publishing {
+	publications {
+		MyPublication(MavenPublication) {
+			from components.java
+			groupId group
+			artifactId project.name
+			version version
+		}
+	}
+}
+
+bintray {
+	Properties properties = new Properties()
+	properties.load(project.rootProject.file('local.properties').newDataInputStream())
+	user = properties.getProperty('bintray.user')
+	key = properties.getProperty('bintray.apikey')
+	publications = ['MyPublication']
+	pkg {
+		repo = 'poisondog'
+		name = project.name
+		licenses = ['Apache-2.0']
+		vcsUrl = 'https://github.com/poisondog/poisondog.commons.git'
+	}
+}
