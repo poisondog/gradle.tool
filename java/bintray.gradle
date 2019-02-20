@@ -28,5 +28,7 @@ bintray {
 		name = project.name
 		licenses = ['Apache-2.0']
 		vcsUrl = 'https://github.com/poisondog/poisondog.commons.git'
+		publish = true
+		publicDownloadNumbers = true
 	}
 }
