@@ -1,0 +1,11 @@
+
+
+task copyDoc(type: Copy) {
+	Properties properties = new Properties()
+	properties.load(project.rootProject.file('local.properties').newDataInputStream())
+	def javadocPath = properties.getProperty('javadoc.path')
+	from 'build/docs/javadoc/'
+	into javadocPath
+}
+
+tasks.javadoc.finalizedBy copyDoc
