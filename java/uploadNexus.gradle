@@ -16,9 +16,9 @@
 uploadArchives {
 	Properties properties = new Properties()
 	properties.load(project.rootProject.file('local.properties').newDataInputStream())
-	nexusUrl = properties.getProperty('nexus.url')
-	nexusUsername = properties.getProperty('nexus.username')
-	nexusPassword = properties.getProperty('nexus.password')
+	def nexusUrl = properties.getProperty('nexus.url')
+	def nexusUsername = properties.getProperty('nexus.username')
+	def nexusPassword = properties.getProperty('nexus.password')
 
 	repositories {
 		mavenDeployer {
