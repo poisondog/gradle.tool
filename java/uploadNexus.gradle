@@ -25,7 +25,7 @@ uploadArchives {
 			repository(url: nexusUrl) {
 				authentication(userName: nexusUsername, password: nexusPassword)
 			}
-			pom.version = version
+			pom.version = project.version
 			pom.artifactId = project.name
 			pom.groupId = project.group
 		}
