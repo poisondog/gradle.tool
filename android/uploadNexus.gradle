@@ -1,0 +1,21 @@
+apply plugin: 'maven'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+ext {
+	nexusUsername = properties.getProperty('nexusUsername')
+	nexusPassword = properties.getProperty('nexusPassword')
+	nexusUrl = properties.getProperty('nexusUrl')
+}
+
+if (properties.getProperty('nexusUsername') != null) {
+	uploadArchives {
+		repositories {
+			mavenDeployer {
+				repository(url: nexusUrl) {
+					authentication(userName: nexusUsername, password: nexusPassword)
+				}
+			}
+		}
+	}
+}
