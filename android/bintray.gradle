@@ -11,7 +11,7 @@ def bintraySiteUrl = properties.getProperty('bintray.siteUrl')
 def bintrayGitUrl = properties.getProperty('bintray.gitUrl')
 def bintrayVersion = version
 def bintrayGroudID = group
-def bintrayArtifactID = properties.getProperty('bintray.artifactId')
+def bintrayArtifactID = properties.getProperty('bintray.artifactId', project.name)
 def bintrayDesc = properties.getProperty('bintray.desc')
 
 install {
