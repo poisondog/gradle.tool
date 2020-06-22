@@ -26,8 +26,6 @@ publishing {
 }
 
 bintray {
-//	Properties properties = new Properties()
-//	properties.load(project.rootProject.file('local.properties').newDataInputStream())
 	user = bintrayUser
 	key = bintrayKey
 	publications = ['MyPublication']
