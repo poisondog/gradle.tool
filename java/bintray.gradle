@@ -10,9 +10,9 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 def bintrayUser = properties.getProperty('bintray.user')
 def bintrayKey = properties.getProperty('bintray.apikey')
-def bintrayVersion = version
-def bintrayGroudID = group
-def bintrayArtifactID = properties.getProperty('bintray.artifactId', project.name)
+def bintrayVersion = version.toString()
+def bintrayGroudID = group.toString()
+def bintrayArtifactID = properties.getProperty('bintray.artifactId', project.name.toString())
 
 publishing {
 	publications {
